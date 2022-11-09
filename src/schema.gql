@@ -1,0 +1,30 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateSoftwareInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Mutation {
+  createSoftware(createSoftwareInput: CreateSoftwareInput!): Software!
+  removeSoftware(id: Int!): Software!
+  updateSoftware(updateSoftwareInput: UpdateSoftwareInput!): Software!
+}
+
+type Query {
+  software(id: Int!): Software!
+  softwares: [Software!]!
+}
+
+type Software {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateSoftwareInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}

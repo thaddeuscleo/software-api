@@ -9,3 +9,17 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Software {
+  id              String  @id @default(uuid())
+  softwareName    String
+  group           String?
+  version         String
+  license         String
+  currentLicense  String
+  numberOfLicense Int
+  installerPath   String
+  note            String?
+}
+
+
