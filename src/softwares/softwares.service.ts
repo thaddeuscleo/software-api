@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaServiceService } from 'src/prisma-service/prisma-service.service';
+import { PrismaService } from 'src/prisma-service/prisma.service';
 import { CreateSoftwareInput } from './dto/create-software.input';
 import { UpdateSoftwareInput } from './dto/update-software.input';
 
 @Injectable()
 export class SoftwaresService {
-  constructor(private prisma: PrismaServiceService) {}
+  constructor(private prisma: PrismaService) {}
 
   create(data: CreateSoftwareInput) {
     return this.prisma.software.create({

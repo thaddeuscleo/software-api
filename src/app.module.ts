@@ -6,7 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SoftwaresModule } from './softwares/softwares.module';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
-import { PrismaServiceService } from './prisma-service/prisma-service.service';
+import { PrismaService } from './prisma-service/prisma.service';
 
 @Module({
   imports: [
@@ -20,6 +20,6 @@ import { PrismaServiceService } from './prisma-service/prisma-service.service';
     SoftwaresModule,
   ],
   controllers: [AppController],
-  providers: [AppService, PrismaServiceService],
+  providers: [AppService, PrismaService],
 })
 export class AppModule {}
