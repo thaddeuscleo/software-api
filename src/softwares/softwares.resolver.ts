@@ -9,7 +9,9 @@ export class SoftwaresResolver {
   constructor(private readonly softwaresService: SoftwaresService) {}
 
   @Mutation(() => Software)
-  createSoftware(@Args('createSoftwareInput') createSoftwareInput: CreateSoftwareInput) {
+  createSoftware(
+    @Args('createSoftwareInput') createSoftwareInput: CreateSoftwareInput,
+  ) {
     return this.softwaresService.create(createSoftwareInput);
   }
 
@@ -24,8 +26,13 @@ export class SoftwaresResolver {
   }
 
   @Mutation(() => Software)
-  updateSoftware(@Args('updateSoftwareInput') updateSoftwareInput: UpdateSoftwareInput) {
-    return this.softwaresService.update(updateSoftwareInput.id, updateSoftwareInput);
+  updateSoftware(
+    @Args('updateSoftwareInput') updateSoftwareInput: UpdateSoftwareInput,
+  ) {
+    return this.softwaresService.update(
+      updateSoftwareInput.id,
+      updateSoftwareInput,
+    );
   }
 
   @Mutation(() => Software)
