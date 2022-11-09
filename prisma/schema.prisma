@@ -20,6 +20,12 @@ model Software {
   numberOfLicense Int
   installerPath   String
   note            String?
+  rooms           Room[]
 }
 
-
+model Room {
+  id         String   @id @default(uuid())
+  roomNUmber String
+  softwareId String
+  software   Software @relation(fields: [softwareId], references: [id])
+}
