@@ -9,10 +9,8 @@ export class SoftwaresResolver {
   constructor(private readonly softwaresService: SoftwaresService) {}
 
   @Mutation(() => Software)
-  createSoftware(
-    @Args('createSoftwareInput') createSoftwareInput: CreateSoftwareInput,
-  ) {
-    return this.softwaresService.create(createSoftwareInput);
+  createSoftware(@Args('createSoftwareInput') input: CreateSoftwareInput) {
+    return this.softwaresService.create(input);
   }
 
   @Query(() => [Software], { name: 'softwares' })
@@ -21,7 +19,7 @@ export class SoftwaresResolver {
   }
 
   @Query(() => Software, { name: 'software' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.softwaresService.findOne(id);
   }
 
@@ -36,7 +34,7 @@ export class SoftwaresResolver {
   }
 
   @Mutation(() => Software)
-  removeSoftware(@Args('id', { type: () => Int }) id: number) {
+  removeSoftware(@Args('id', { type: () => String }) id: string) {
     return this.softwaresService.remove(id);
   }
 }

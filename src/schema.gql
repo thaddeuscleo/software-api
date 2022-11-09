@@ -3,28 +3,148 @@
 # ------------------------------------------------------
 
 input CreateSoftwareInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """
+  Software current Installer
+  """
+  currentLicense: String!
+
+  """
+  Software Group
+  """
+  group: String!
+
+  """
+  Software installer location
+  """
+  installerPath: String!
+
+  """
+  Is Software Licensed
+  """
+  license: String!
+
+  """
+  Software notes
+  """
+  note: String!
+
+  """
+  Number of license
+  """
+  numberOfLicense: Int!
+
+  """
+  Software Name
+  """
+  softwareName: String!
+
+  """
+  Software Version
+  """
+  version: String!
 }
 
 type Mutation {
   createSoftware(createSoftwareInput: CreateSoftwareInput!): Software!
-  removeSoftware(id: Int!): Software!
+  removeSoftware(id: String!): Software!
   updateSoftware(updateSoftwareInput: UpdateSoftwareInput!): Software!
 }
 
 type Query {
-  software(id: Int!): Software!
+  software(id: String!): Software!
   softwares: [Software!]!
 }
 
 type Software {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """
+  Current license
+  """
+  currentLicense: String!
+
+  """
+  Software Group
+  """
+  group: String!
+
+  """
+  Software Identifier
+  """
+  id: String!
+
+  """
+  Software installer location
+  """
+  installerPath: String!
+
+  """
+  Is Software Licensed
+  """
+  license: String!
+
+  """
+  Software notes
+  """
+  note: String!
+
+  """
+  Number of license
+  """
+  numberOfLicense: Int!
+
+  """
+  Software Name
+  """
+  softwareName: String!
+
+  """
+  Software Version
+  """
+  version: String!
 }
 
 input UpdateSoftwareInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  """
+  Software current Installer
+  """
+  currentLicense: String
+
+  """
+  Software Group
+  """
+  group: String
+
+  """
+  Software Identifier
+  """
+  id: String!
+
+  """
+  Software installer location
+  """
+  installerPath: String
+
+  """
+  Is Software Licensed
+  """
+  license: String
+
+  """
+  Software notes
+  """
+  note: String
+
+  """
+  Number of license
+  """
+  numberOfLicense: Int
+
+  """
+  Software Name
+  """
+  softwareName: String
+
+  """
+  Software Version
+  """
+  version: String
 }
