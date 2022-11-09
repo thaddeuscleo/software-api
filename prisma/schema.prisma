@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Software {
-  id              String  @id @default(uuid())
+  id              String             @id @default(uuid())
   softwareName    String
   group           String?
   version         String
@@ -20,12 +20,20 @@ model Software {
   numberOfLicense Int
   installerPath   String
   note            String?
-  rooms           Room[]
+  rooms           SoftwaresOnRooms[]
 }
 
 model Room {
-  id         String   @id @default(uuid())
-  roomNUmber String
+  id         String             @id @default(uuid())
+  roomNumber String
+  softwares  SoftwaresOnRooms[]
+}
+
+model SoftwaresOnRooms {
   softwareId String
   software   Software @relation(fields: [softwareId], references: [id])
+  roomId     String
+  room       Room     @relation(fields: [roomId], references: [id])
+
+  @@id([softwareId, roomId])
 }
