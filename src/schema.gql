@@ -3,39 +3,61 @@
 # ------------------------------------------------------
 
 input CreateRoomInput {
-  """Room Number"""
+  """
+  Room Number
+  """
   roomNumber: String!
 
-  """Room softwares Id"""
+  """
+  Room softwares Id
+  """
   softwares: [String!]
 }
 
 input CreateSoftwareInput {
-  """Software current Installer"""
+  """
+  Software current Installer
+  """
   currentLicense: String!
 
-  """Software Group"""
+  """
+  Software Group
+  """
   group: String!
 
-  """Software installer location"""
+  """
+  Software installer location
+  """
   installerPath: String!
 
-  """Is Software Licensed"""
+  """
+  Is Software Licensed
+  """
   license: String!
 
-  """Software notes"""
+  """
+  Software notes
+  """
   note: String!
 
-  """Number of license"""
+  """
+  Number of license
+  """
   numberOfLicense: Int!
 
-  """Software notes"""
+  """
+  Software notes
+  """
   rooms: [String!]
 
-  """Software Name"""
+  """
+  Software Name
+  """
   softwareName: String!
 
-  """Software Version"""
+  """
+  Software Version
+  """
   version: String!
 }
 
@@ -56,87 +78,139 @@ type Query {
 }
 
 type Room {
-  """Room identifier In UUID"""
+  """
+  Room identifier In UUID
+  """
   id: String!
 
-  """Room Number"""
+  """
+  Room Number
+  """
   roomNumber: String!
 
-  """Room softwares"""
+  """
+  Room softwares
+  """
   software: [Software!]!
 }
 
 type Software {
-  """Current license"""
+  """
+  Current license
+  """
   currentLicense: String!
 
-  """Software Group"""
+  """
+  Software Group
+  """
   group: String!
 
-  """Software Identifier"""
+  """
+  Software Identifier
+  """
   id: String!
 
-  """Software installer location"""
+  """
+  Software installer location
+  """
   installerPath: String!
 
-  """Is Software Licensed"""
+  """
+  Is Software Licensed
+  """
   license: String!
 
-  """Software notes"""
+  """
+  Software notes
+  """
   note: String!
 
-  """Number of license"""
+  """
+  Number of license
+  """
   numberOfLicense: Int!
 
-  """Software in room"""
+  """
+  Software in room
+  """
   rooms: [Room!]!
 
-  """Software Name"""
+  """
+  Software Name
+  """
   softwareName: String!
 
-  """Software Version"""
+  """
+  Software Version
+  """
   version: String!
 }
 
 input UpdateRoomInput {
-  """Room identifier In UUID"""
+  """
+  Room identifier In UUID
+  """
   id: String!
 
-  """Room Number"""
+  """
+  Room Number
+  """
   roomNumber: String
 
-  """Room softwares Id"""
+  """
+  Room softwares Id
+  """
   softwares: [String!]
 }
 
 input UpdateSoftwareInput {
-  """Software current Installer"""
+  """
+  Software current Installer
+  """
   currentLicense: String
 
-  """Software Group"""
+  """
+  Software Group
+  """
   group: String
 
-  """Software Identifier"""
+  """
+  Software Identifier
+  """
   id: String!
 
-  """Software installer location"""
+  """
+  Software installer location
+  """
   installerPath: String
 
-  """Is Software Licensed"""
+  """
+  Is Software Licensed
+  """
   license: String
 
-  """Software notes"""
+  """
+  Software notes
+  """
   note: String
 
-  """Number of license"""
+  """
+  Number of license
+  """
   numberOfLicense: Int
 
-  """Software notes"""
+  """
+  Software notes
+  """
   rooms: [String!]
 
-  """Software Name"""
+  """
+  Software Name
+  """
   softwareName: String
 
-  """Software Version"""
+  """
+  Software Version
+  """
   version: String
 }

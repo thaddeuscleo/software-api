@@ -21,8 +21,8 @@ export class RoomsService {
   findOne(id: string) {
     return this.prisma.room.findFirst({
       where: {
-        id
-      }
+        id,
+      },
     });
   }
 
@@ -38,8 +38,8 @@ export class RoomsService {
   remove(id: string) {
     return this.prisma.room.delete({
       where: {
-        id
-      }
+        id,
+      },
     });
   }
 }
