@@ -19,6 +19,5 @@ import { RoomsModule } from './rooms/rooms.module';
     SoftwaresModule,
     RoomsModule,
   ],
-  providers: [PrismaService],
 })
 export class AppModule {}
