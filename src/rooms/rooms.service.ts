@@ -1,5 +1,7 @@
 import { Prisma } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
+import { GraphQLError } from 'graphql';
 import { PrismaService } from 'src/prisma-service/prisma.service';
 import { CreateRoomInput } from './dto/create-room.input';
 import { UpdateRoomInput } from './dto/update-room.input';
@@ -8,10 +10,26 @@ import { UpdateRoomInput } from './dto/update-room.input';
 export class RoomsService {
   constructor(private prisma: PrismaService) {}
 
-  create(data: CreateRoomInput) {
-    return this.prisma.room.create({
-      data,
-    });
+  create(input: CreateRoomInput) {
+    try {
+      return this.prisma.room.create({
+        data: {
+          roomNumber: input.roomNumber,
+          softwares: {
+            create: [
+              ...input.softwares.map(
+                (softwareId) => <{ softwareId }>{ softwareId },
+              ),
+            ],
+          },
+        },
+      });
+    } catch (error) {
+      if (error instanceof PrismaClientKnownRequestError) {
+        throw new GraphQLError(error.message);
+      }
+      throw new GraphQLError('Unknown Error');
+    }
   }
 
   findAll() {
@@ -26,19 +44,78 @@ export class RoomsService {
     });
   }
 
-  update(id: string, data: UpdateRoomInput) {
-    return this.prisma.room.update({
-      data,
-      where: {
-        id,
-      },
-    });
+  update(id: string, input: UpdateRoomInput) {
+    try {
+      return this.prisma.room.update({
+        data: {
+          roomNumber: input.roomNumber,
+          softwares: {
+            connectOrCreate: [
+              ...input.softwares.map(
+                (softwareId) =>
+                  <Prisma.SoftwaresOnRoomsCreateOrConnectWithoutRoomInput>{
+                    where: {
+                      softwareId_roomId: {
+                        roomId: id,
+                        softwareId,
+                      },
+                    },
+                    create: {
+                      softwareId,
+                    },
+                  },
+              ),
+            ],
+          },
+        },
+        where: {
+          id,
+        },
+      });
+    } catch (error) {
+      if (error instanceof PrismaClientKnownRequestError) {
+        throw new GraphQLError(error.message);
+      }
+      throw new GraphQLError('Unknown Error');
+    }
   }
 
-  remove(id: string) {
-    return this.prisma.room.delete({
+  async remove(id: string) {
+    try {
+      await this.prisma.softwaresOnRooms.deleteMany({
+        where: {
+          roomId: id,
+        },
+      });
+    } catch (error) {
+      if (error instanceof PrismaClientKnownRequestError) {
+        throw new GraphQLError(error.message);
+      }
+      throw new GraphQLError('Unknown Error');
+    }
+
+    try {
+      return await this.prisma.room.delete({
+        where: {
+          id,
+        },
+      });
+    } catch (error) {
+      if (error instanceof PrismaClientKnownRequestError) {
+        throw new GraphQLError(error.message);
+      }
+      throw new GraphQLError('Unknown Error');
+    }
+  }
+
+  async getSoftwares(roomId: string) {
+    return await this.prisma.software.findMany({
       where: {
-        id,
+        rooms: {
+          some: {
+            roomId,
+          },
+        },
       },
     });
   }

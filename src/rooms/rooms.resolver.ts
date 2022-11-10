@@ -1,8 +1,16 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { RoomsService } from './rooms.service';
 import { Room } from './entities/room.entity';
 import { CreateRoomInput } from './dto/create-room.input';
 import { UpdateRoomInput } from './dto/update-room.input';
+import { Software } from 'src/softwares/entities/software.entity';
 
 @Resolver(() => Room)
 export class RoomsResolver {
@@ -31,5 +39,10 @@ export class RoomsResolver {
   @Mutation(() => Room)
   removeRoom(@Args('id', { type: () => String }) id: string) {
     return this.roomsService.remove(id);
+  }
+
+  @ResolveField(() => [Software])
+  softwares(@Parent() room: Room) {
+    return this.roomsService.getSoftwares(room.id);
   }
 }
