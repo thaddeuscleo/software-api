@@ -13,9 +13,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       driver: ApolloDriver,
       imports: [ConfigModule],
       useFactory: (config: ConfigService) => {
-        const isApolloSandBox = config.get<string>('APOLLO_SANDBOX') === 'true'; 
-        const isPlayground = config.get<string>('PLAYGROUND') === 'true' && !isApolloSandBox;
-        const plugin = isApolloSandBox ? ApolloServerPluginLandingPageLocalDefault() : {};
+        const isApolloSandBox = config.get<string>('APOLLO_SANDBOX') === 'true';
+        const isPlayground =
+          config.get<string>('PLAYGROUND') === 'true' && !isApolloSandBox;
+        const plugin = isApolloSandBox
+          ? ApolloServerPluginLandingPageLocalDefault()
+          : {};
 
         return {
           autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
