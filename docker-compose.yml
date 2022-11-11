@@ -28,6 +28,20 @@ services:
       - '5050:80'
     networks:
       - helpdesk-net
+  
+  rabbitmq:
+    container_name: rabbitmq_broker
+    image: rabbitmq:management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    ports:
+      # AMQP protocol port
+      - '5672:5672'
+      # HTTP management UI
+      - '15672:15672'
+    networks:
+      - helpdesk-net
 
 networks:
   helpdesk-net:

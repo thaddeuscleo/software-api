@@ -6,6 +6,7 @@ import { SoftwaresModule } from './softwares/softwares.module';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { RoomsModule } from './rooms/rooms.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { RabbitmqRoomsModule } from './rabbitmq-rooms/rabbitmq-rooms.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     ConfigModule.forRoot(),
     SoftwaresModule,
     RoomsModule,
+    RabbitmqRoomsModule,
   ],
 })
 export class AppModule {}
