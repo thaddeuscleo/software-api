@@ -8,14 +8,6 @@ export class RabbitmqRoomsService {
     return 'This action adds a new rabbitmqRoom';
   }
 
-  findAll() {
-    return `This action returns all rabbitmqRooms`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} rabbitmqRoom`;
-  }
-
   update(id: number, updateRabbitmqRoomDto: UpdateRabbitmqRoomDto) {
     return `This action updates a #${id} rabbitmqRoom`;
   }

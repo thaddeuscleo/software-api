@@ -10,7 +10,8 @@ async function bootstrap() {
       transport: Transport.RMQ,
       options: {
         urls: [`${configService.get('RABBITMQ_URL')}`],
-        queue: `${configService.get('ROOM_QUEUE')}`,
+        queue: `${configService.get('SOFTWARE_QUEUE')}`,
+        noAck: false,
         queueOptions: {
           durable: false
         },

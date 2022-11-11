@@ -1,5 +1,5 @@
-import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Controller, Logger } from '@nestjs/common';
+import { Ctx, EventPattern, Payload, RmqContext } from '@nestjs/microservices';
 import { RabbitmqRoomsService } from './rabbitmq-rooms.service';
 import { CreateRabbitmqRoomDto } from './dto/create-rabbitmq-room.dto';
 import { UpdateRabbitmqRoomDto } from './dto/update-rabbitmq-room.dto';
@@ -8,28 +8,14 @@ import { UpdateRabbitmqRoomDto } from './dto/update-rabbitmq-room.dto';
 export class RabbitmqRoomsController {
   constructor(private readonly rabbitmqRoomsService: RabbitmqRoomsService) {}
 
-  @MessagePattern('createRabbitmqRoom')
-  create(@Payload() createRabbitmqRoomDto: CreateRabbitmqRoomDto) {
-    return this.rabbitmqRoomsService.create(createRabbitmqRoomDto);
-  }
+  private readonly logger = new Logger(RabbitmqRoomsController.name);
 
-  @MessagePattern('findAllRabbitmqRooms')
-  findAll() {
-    return this.rabbitmqRoomsService.findAll();
-  }
+  @EventPattern('room_created')
+  roomInserted(@Payload() data, @Ctx() context: RmqContext) {
+    const channel = context.getChannelRef();
+    const message = context.getMessage();
 
-  @MessagePattern('findOneRabbitmqRoom')
-  findOne(@Payload() id: number) {
-    return this.rabbitmqRoomsService.findOne(id);
-  }
-
-  @MessagePattern('updateRabbitmqRoom')
-  update(@Payload() updateRabbitmqRoomDto: UpdateRabbitmqRoomDto) {
-    return this.rabbitmqRoomsService.update(updateRabbitmqRoomDto.id, updateRabbitmqRoomDto);
-  }
-
-  @MessagePattern('removeRabbitmqRoom')
-  remove(@Payload() id: number) {
-    return this.rabbitmqRoomsService.remove(id);
+    this.logger.debug(JSON.stringify(data))
+    channel.ack(message);
   }
 }
