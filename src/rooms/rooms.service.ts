@@ -14,6 +14,7 @@ export class RoomsService {
     try {
       return this.prisma.room.create({
         data: {
+          id: input.id === '' ? undefined : input.id,
           roomNumber: input.roomNumber,
           softwares: {
             create: [
@@ -28,7 +29,7 @@ export class RoomsService {
       if (error instanceof PrismaClientKnownRequestError) {
         throw new GraphQLError(error.message);
       }
-      throw new GraphQLError('Unknown Error');
+      throw new GraphQLError(error);
     }
   }
 
@@ -91,7 +92,7 @@ export class RoomsService {
       if (error instanceof PrismaClientKnownRequestError) {
         throw new GraphQLError(error.message);
       }
-      throw new GraphQLError('Unknown Error');
+      throw new GraphQLError(error);
     }
 
     try {
@@ -104,7 +105,7 @@ export class RoomsService {
       if (error instanceof PrismaClientKnownRequestError) {
         throw new GraphQLError(error.message);
       }
-      throw new GraphQLError('Unknown Error');
+      throw new GraphQLError(error);
     }
   }
 

@@ -3,11 +3,14 @@
 # ------------------------------------------------------
 
 input CreateRoomInput {
+  """Room Id"""
+  id: String = ""
+
   """Room Number"""
   roomNumber: String!
 
   """Room softwares Id"""
-  softwares: [String!]
+  softwares: [String!] = []
 }
 
 input CreateSoftwareInput {
@@ -30,7 +33,7 @@ input CreateSoftwareInput {
   numberOfLicense: Int!
 
   """Software notes"""
-  rooms: [String!]
+  rooms: [String!] = []
 
   """Software Name"""
   softwareName: String!
@@ -133,7 +136,7 @@ input UpdateSoftwareInput {
   numberOfLicense: Int
 
   """Software notes"""
-  rooms: [String!]
+  rooms: [String!] = []
 
   """Software Name"""
   softwareName: String
