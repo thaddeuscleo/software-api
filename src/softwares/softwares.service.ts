@@ -85,19 +85,6 @@ export class SoftwaresService {
 
   async remove(id: string) {
     try {
-      await this.prisma.softwaresOnRooms.deleteMany({
-        where: {
-          softwareId: id,
-        },
-      });
-    } catch (error) {
-      if (error instanceof PrismaClientKnownRequestError) {
-        throw new GraphQLError(error.message);
-      }
-      throw new GraphQLError('Unknown Error');
-    }
-
-    try {
       return await this.prisma.software.delete({
         where: {
           id,

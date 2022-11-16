@@ -32,9 +32,9 @@ model Room {
 
 model SoftwaresOnRooms {
   softwareId String
-  software   Software @relation(fields: [softwareId], references: [id])
+  software   Software @relation(fields: [softwareId], references: [id], onDelete: Cascade)
   roomId     String
-  room       Room     @relation(fields: [roomId], references: [id])
+  room       Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
 
   @@id([softwareId, roomId])
 }
