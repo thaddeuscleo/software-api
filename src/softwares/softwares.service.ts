@@ -8,7 +8,7 @@ import { UpdateSoftwareInput } from './dto/update-software.input';
 
 @Injectable()
 export class SoftwaresService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   create(input: CreateSoftwareInput) {
     return this.prisma.software.create({
@@ -28,8 +28,15 @@ export class SoftwaresService {
     });
   }
 
-  findAll() {
-    return this.prisma.software.findMany();
+  findAll(skip?: number, take?: number) {
+    return this.prisma.software.findMany({
+      skip,
+      take,
+    });
+  }
+
+  countAllSoftwares() {
+    return this.prisma.software.count()
   }
 
   findOne(id: string) {

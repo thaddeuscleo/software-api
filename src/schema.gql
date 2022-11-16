@@ -55,7 +55,8 @@ type Query {
   room(id: String!): Room!
   rooms: [Room!]!
   software(id: String!): Software!
-  softwares: [Software!]!
+  softwareCount: Int!
+  softwares(skip: Int, take: Int): [Software!]!
 }
 
 type Room {
