@@ -5,6 +5,7 @@ import {
   Args,
   ResolveField,
   Parent,
+  Int,
 } from '@nestjs/graphql';
 import { RoomsService } from './rooms.service';
 import { Room } from './entities/room.entity';
@@ -22,13 +23,23 @@ export class RoomsResolver {
   }
 
   @Query(() => [Room], { name: 'rooms' })
-  findAll() {
-    return this.roomsService.findAll();
+  findAll(
+    @Args('skip', { type: () => Int, nullable: true, defaultValue: undefined })
+    skip?: number,
+    @Args('take', { type: () => Int, nullable: true, defaultValue: undefined })
+    take?: number,
+  ) {
+    return this.roomsService.findAll(skip, take);
   }
 
   @Query(() => Room, { name: 'room' })
   findOne(@Args('id', { type: () => String }) id: string) {
     return this.roomsService.findOne(id);
+  }
+
+  @Query(() => Int, { name: 'roomCount' })
+  count() {
+    return this.roomsService.count()
   }
 
   @Mutation(() => Room)

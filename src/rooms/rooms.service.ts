@@ -33,8 +33,11 @@ export class RoomsService {
     }
   }
 
-  findAll() {
-    return this.prisma.room.findMany();
+  findAll(skip?: number, take?: number) {
+    return this.prisma.room.findMany({
+      skip,
+      take
+    });
   }
 
   findOne(id: string) {
@@ -43,6 +46,10 @@ export class RoomsService {
         id,
       },
     });
+  }
+
+  count() {
+    return this.prisma.room.count();
   }
 
   update(id: string, input: UpdateRoomInput) {
@@ -82,19 +89,6 @@ export class RoomsService {
   }
 
   async remove(id: string) {
-    try {
-      await this.prisma.softwaresOnRooms.deleteMany({
-        where: {
-          roomId: id,
-        },
-      });
-    } catch (error) {
-      if (error instanceof PrismaClientKnownRequestError) {
-        throw new GraphQLError(error.message);
-      }
-      throw new GraphQLError(error);
-    }
-
     try {
       return await this.prisma.room.delete({
         where: {

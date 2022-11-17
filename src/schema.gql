@@ -53,7 +53,8 @@ type Mutation {
 
 type Query {
   room(id: String!): Room!
-  rooms: [Room!]!
+  roomCount: Int!
+  rooms(skip: Int, take: Int): [Room!]!
   software(id: String!): Software!
   softwareCount: Int!
   softwares(skip: Int, take: Int): [Software!]!
