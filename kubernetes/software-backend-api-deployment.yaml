@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml -o kubernetes
+    kompose.version: 1.26.1 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: software-backend-api
+  name: software-backend-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: software-backend-api
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml -o kubernetes
+        kompose.version: 1.26.1 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/software-api-net: "true"
+        io.kompose.service: software-backend-api
+    spec:
+      containers:
+        - image: software_backend_api:1.0.0
+          name: software-backend-api
+          ports:
+            - containerPort: 3000
+            - containerPort: 9229
+          resources: {}
+          volumeMounts:
+            - mountPath: /usr/src/app
+              name: software-backend-api-claim0
+            - mountPath: /usr/src/app/node_modules
+              name: software-backend-api-claim1
+      restartPolicy: Always
+      volumes:
+        - name: software-backend-api-claim0
+          persistentVolumeClaim:
+            claimName: software-backend-api-claim0
+        - name: software-backend-api-claim1
+          persistentVolumeClaim:
+            claimName: software-backend-api-claim1
+status: {}
