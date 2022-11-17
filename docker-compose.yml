@@ -1,6 +1,27 @@
 version: '3'
 
 services:
+  prod:
+    container_name: nestjs_api_prod
+    image: nestjs-api-prod:1.0.0
+    build:
+        context: .
+        target: production
+        dockerfile: ./Dockerfile
+    ports:
+        - 3000:3000
+        - 9229:9229
+    networks:
+        - helpdesk-net
+    depends_on:
+      - "rabbitmq"
+      - "postgres"
+      - "minio"
+    volumes:
+        - .:/usr/src/app
+        - /usr/src/app/node_modules
+    restart: unless-stopped
+
   postgres:
     container_name: postgres
     image: postgres:12
