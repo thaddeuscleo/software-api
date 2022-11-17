@@ -39,7 +39,7 @@ export class RoomsResolver {
 
   @Query(() => Int, { name: 'roomCount' })
   count() {
-    return this.roomsService.count()
+    return this.roomsService.count();
   }
 
   @Mutation(() => Room)

@@ -11,7 +11,7 @@ export class RabbitmqRoomsController {
   private getChannelAndMessage(context: RmqContext) {
     const channel = context.getChannelRef();
     const message = context.getMessage();
-    return [channel, message]
+    return [channel, message];
   }
 
   @EventPattern('room_created')

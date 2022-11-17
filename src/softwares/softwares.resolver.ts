@@ -41,7 +41,7 @@ export class SoftwaresResolver {
     return this.softwaresService.findOne(id);
   }
 
-  @Query(() => Int, {name: 'softwareCount'})
+  @Query(() => Int, { name: 'softwareCount' })
   softwareCount() {
     return this.softwaresService.countAllSoftwares();
   }

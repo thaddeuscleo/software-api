@@ -15,7 +15,7 @@ services:
       - 5433:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
-  
+
   rabbitmq:
     container_name: rabbitmq_broker
     image: rabbitmq:management-alpine

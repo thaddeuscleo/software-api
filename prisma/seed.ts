@@ -4,11 +4,9 @@ import { faker } from '@faker-js/faker';
 const prisma = new PrismaClient();
 
 const main = async () => {
-  
   await prisma.softwaresOnRooms.deleteMany({});
   await prisma.room.deleteMany({});
   await prisma.software.deleteMany({});
-
 
   const masterType: string[] = ['General', 'Mulmed', 'HighSpec'];
   let rooms: string[] = [];

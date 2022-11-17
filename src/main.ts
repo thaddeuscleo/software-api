@@ -7,17 +7,16 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
   app.connectMicroservice<MicroserviceOptions>({
-      transport: Transport.RMQ,
-      options: {
-        urls: [`${configService.get('RABBITMQ_URL')}`],
-        queue: `${configService.get('SOFTWARE_QUEUE')}`,
-        noAck: false,
-        queueOptions: {
-          durable: false
-        },
-      }
-    }  
-  );
+    transport: Transport.RMQ,
+    options: {
+      urls: [`${configService.get('RABBITMQ_URL')}`],
+      queue: `${configService.get('SOFTWARE_QUEUE')}`,
+      noAck: false,
+      queueOptions: {
+        durable: false,
+      },
+    },
+  });
   await app.startAllMicroservices();
   await app.listen(configService.get('SERVICE_PORT'));
 }

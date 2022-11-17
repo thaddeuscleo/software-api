@@ -36,7 +36,7 @@ export class SoftwaresService {
   }
 
   countAllSoftwares() {
-    return this.prisma.software.count()
+    return this.prisma.software.count();
   }
 
   findOne(id: string) {

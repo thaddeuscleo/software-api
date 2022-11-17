@@ -36,7 +36,7 @@ export class RoomsService {
   findAll(skip?: number, take?: number) {
     return this.prisma.room.findMany({
       skip,
-      take
+      take,
     });
   }
 

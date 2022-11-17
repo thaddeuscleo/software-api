@@ -5,21 +5,21 @@ services:
     container_name: software_backend_api
     image: software_backend_api:1.0.0
     build:
-        context: .
-        target: production
-        dockerfile: ./Dockerfile
+      context: .
+      target: production
+      dockerfile: ./Dockerfile
     ports:
-        - 3000:3000
-        - 9229:9229
+      - 3000:3000
+      - 9229:9229
     networks:
-        - software-api-net
+      - software-api-net
     depends_on:
-      - "rabbitmq"
-      - "postgres"
-      - "minio"
+      - 'rabbitmq'
+      - 'postgres'
+      - 'minio'
     volumes:
-        - .:/usr/src/app
-        - /usr/src/app/node_modules
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
     restart: unless-stopped
 
   postgres:
@@ -35,7 +35,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
-  
+
   rabbitmq:
     container_name: rabbitmq_broker
     image: rabbitmq:management-alpine

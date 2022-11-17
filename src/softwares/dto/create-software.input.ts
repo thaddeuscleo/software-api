@@ -26,6 +26,10 @@ export class CreateSoftwareInput {
   @Field(() => String, { description: 'Software notes' })
   note: string | null;
 
-  @Field(() => [String], { description: 'Software notes', nullable: true, defaultValue: [] })
+  @Field(() => [String], {
+    description: 'Software notes',
+    nullable: true,
+    defaultValue: [],
+  })
   rooms?: string[];
 }

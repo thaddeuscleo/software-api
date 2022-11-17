@@ -6,6 +6,6 @@ import { PrismaService } from 'src/prisma-service/prisma.service';
 
 @Module({
   controllers: [RabbitmqRoomsController],
-  providers: [RabbitmqRoomsService, RoomsService, PrismaService]
+  providers: [RabbitmqRoomsService, RoomsService, PrismaService],
 })
 export class RabbitmqRoomsModule {}
