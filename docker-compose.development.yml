@@ -5,7 +5,7 @@ services:
     container_name: postgres
     image: postgres:12
     networks:
-      - helpdesk-net
+      - software-api-net
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USERNAME}
@@ -23,7 +23,7 @@ services:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
     networks:
-      - helpdesk-net
+      - software-api-net
 
   minio:
     image: minio/minio
@@ -35,7 +35,7 @@ services:
     command: server --console-address ":9001" /data
 
 networks:
-  helpdesk-net:
+  software-api-net:
     driver: bridge
 
 volumes:

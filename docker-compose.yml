@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  prod:
-    container_name: nestjs_api_prod
-    image: nestjs-api-prod:1.0.0
+  software_backend_api:
+    container_name: software_backend_api
+    image: software_backend_api:1.0.0
     build:
         context: .
         target: production
@@ -12,7 +12,7 @@ services:
         - 3000:3000
         - 9229:9229
     networks:
-        - helpdesk-net
+        - software-api-net
     depends_on:
       - "rabbitmq"
       - "postgres"
@@ -26,7 +26,7 @@ services:
     container_name: postgres
     image: postgres:12
     networks:
-      - helpdesk-net
+      - software-api-net
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USERNAME}
@@ -34,6 +34,7 @@ services:
       PG_DATA: /var/lib/postgresql/data
     volumes:
       - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
   
   rabbitmq:
     container_name: rabbitmq_broker
@@ -42,7 +43,8 @@ services:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
     networks:
-      - helpdesk-net
+      - software-api-net
+    restart: unless-stopped
 
   minio:
     image: minio/minio
@@ -52,9 +54,12 @@ services:
       MINIO_ROOT_USER: masoud
       MINIO_ROOT_PASSWORD: Strong#Pass#2022
     command: server --console-address ":9001" /data
+    restart: unless-stopped
+    networks:
+      - software-api-net
 
 networks:
-  helpdesk-net:
+  software-api-net:
     driver: bridge
 
 volumes:
