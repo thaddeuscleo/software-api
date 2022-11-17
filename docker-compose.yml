@@ -6,7 +6,6 @@ services:
     image: software_backend_api:1.0.0
     build:
       context: .
-      target: production
       dockerfile: ./Dockerfile
     ports:
       - 3000:3000
