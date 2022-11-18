@@ -8,8 +8,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - 3000:3000
-      - 9229:9229
+      - ${SERVICE_PORT}:${SERVICE_PORT}
     networks:
       - software-api-net
     depends_on:
@@ -50,12 +49,12 @@ services:
     volumes:
       - minio_storage:/data
     environment:
-      MINIO_ROOT_USER: masoud
-      MINIO_ROOT_PASSWORD: Strong#Pass#2022
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     command: server --console-address ":9001" /data
-    restart: unless-stopped
     networks:
       - software-api-net
+    restart: unless-stopped
 
 networks:
   software-api-net:
