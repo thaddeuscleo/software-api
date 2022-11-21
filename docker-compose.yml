@@ -63,7 +63,5 @@ networks:
 volumes:
   pgdata:
     external: true
-  pgadmin:
-    external: true
   minio_storage:
     external: true
