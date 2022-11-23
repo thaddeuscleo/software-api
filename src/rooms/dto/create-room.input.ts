@@ -12,6 +12,9 @@ export class CreateRoomInput {
   @Field(() => String, { description: 'Room Number' })
   roomNumber: string;
 
+  @Field(() => String, { description: 'Room Master Id' })
+  masterId: string;
+
   @Field(() => [String], {
     description: 'Room softwares Id',
     nullable: true,

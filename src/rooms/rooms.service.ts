@@ -14,6 +14,7 @@ export class RoomsService {
     try {
       return this.prisma.room.create({
         data: {
+          masterId: input.masterId,
           id: input.id === '' ? undefined : input.id,
           roomNumber: input.roomNumber,
           softwares: {

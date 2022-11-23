@@ -9,6 +9,9 @@ export class UpdateRoomInput extends PartialType(CreateRoomInput) {
   @Field(() => String, { description: 'Room Number', nullable: true })
   roomNumber: string;
 
+  @Field(() => String, { description: 'Room Master Id', nullable: true })
+  masterId: string;
+
   @Field(() => [String], { description: 'Room softwares Id', nullable: true })
   softwares: string[];
 }

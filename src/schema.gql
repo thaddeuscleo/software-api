@@ -6,6 +6,9 @@ input CreateRoomInput {
   """Room Id"""
   id: String = ""
 
+  """Room Master Id"""
+  masterId: String!
+
   """Room Number"""
   roomNumber: String!
 
@@ -26,14 +29,20 @@ input CreateSoftwareInput {
   """Is Software Licensed"""
   license: String!
 
+  """Master Id"""
+  masterId: String!
+
   """Software notes"""
   note: String!
 
   """Number of license"""
   numberOfLicense: Int!
 
-  """Software notes"""
+  """List Of Rooms Id"""
   rooms: [String!] = []
+
+  """Semester Id"""
+  semesterId: String!
 
   """Software Name"""
   softwareName: String!
@@ -116,6 +125,9 @@ input UpdateRoomInput {
   """Room identifier In UUID"""
   id: String!
 
+  """Room Master Id"""
+  masterId: String
+
   """Room Number"""
   roomNumber: String
 
@@ -139,14 +151,20 @@ input UpdateSoftwareInput {
   """Is Software Licensed"""
   license: String
 
+  """Master Id"""
+  masterId: String
+
   """Software notes"""
   note: String
 
   """Number of license"""
   numberOfLicense: Int
 
-  """Software notes"""
+  """List Of Rooms Id"""
   rooms: [String!] = []
+
+  """Semester Id"""
+  semesterId: String
 
   """Software Name"""
   softwareName: String

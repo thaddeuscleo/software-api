@@ -6,6 +6,12 @@ export class UpdateSoftwareInput extends PartialType(CreateSoftwareInput) {
   @Field(() => String, { description: 'Software Identifier' })
   id: string;
 
+  @Field(() => String, { description: 'Semester Id', nullable: true })
+  semesterId: string;
+
+  @Field(() => String, { description: 'Master Id', nullable: true})
+  masterId: string;
+
   @Field(() => String, { description: 'Software Name', nullable: true })
   softwareName: string;
 

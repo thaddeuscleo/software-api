@@ -14,6 +14,8 @@ export class SoftwaresService {
   create(input: CreateSoftwareInput) {
     return this.prisma.software.create({
       data: {
+        masterId: input.masterId,
+        semesterId: input.semesterId,
         currentLicense: input.currentLicense,
         installerPath: input.installerPath,
         license: input.license,

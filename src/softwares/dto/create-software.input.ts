@@ -5,6 +5,12 @@ export class CreateSoftwareInput {
   @Field(() => String, { description: 'Software Name' })
   softwareName: string;
 
+  @Field(() => String, { description: 'Semester Id' })
+  semesterId: string;
+
+  @Field(() => String, { description: 'Master Id' })
+  masterId: string;
+
   @Field(() => String, { description: 'Software Group' })
   group: string;
 
@@ -27,7 +33,7 @@ export class CreateSoftwareInput {
   note: string | null;
 
   @Field(() => [String], {
-    description: 'Software notes',
+    description: 'List Of Rooms Id',
     nullable: true,
     defaultValue: [],
   })
