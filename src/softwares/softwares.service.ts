@@ -36,6 +36,7 @@ export class SoftwaresService {
       where: {
         softwareName: {
           contains: find.softwareName,
+          mode: 'insensitive',
         },
       },
     });
