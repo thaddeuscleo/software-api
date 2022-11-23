@@ -1,5 +1,4 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-import { Software } from 'src/softwares/entities/software.entity';
+import { InputType, Field } from '@nestjs/graphql';
 
 @InputType()
 export class CreateRoomInput {

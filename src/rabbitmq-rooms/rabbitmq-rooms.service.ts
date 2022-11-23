@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { RoomsService } from 'src/rooms/rooms.service';
 import { CreateRabbitmqRoomDto } from './dto/create-rabbitmq-room.dto';
 import { UpdateRabbitmqRoomDto } from './dto/update-rabbitmq-room.dto';
