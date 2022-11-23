@@ -7,7 +7,7 @@ import { UpdateRabbitmqRoomDto } from './dto/update-rabbitmq-room.dto';
 export class RabbitmqRoomsService {
   constructor(private roomService: RoomsService) {}
 
-  create({id, masterId, roomNumber}: CreateRabbitmqRoomDto) {
+  create({ id, masterId, roomNumber }: CreateRabbitmqRoomDto) {
     return this.roomService.create({
       id,
       roomNumber,
@@ -16,7 +16,7 @@ export class RabbitmqRoomsService {
     });
   }
 
-  update({id, masterId, roomNumber}: UpdateRabbitmqRoomDto) {
+  update({ id, masterId, roomNumber }: UpdateRabbitmqRoomDto) {
     return this.roomService.update(id, {
       id,
       roomNumber,
