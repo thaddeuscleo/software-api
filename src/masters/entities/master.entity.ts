@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 import { Software } from './../../softwares/entities/software.entity';
 import { Room } from './../../rooms/entities/room.entity';
 

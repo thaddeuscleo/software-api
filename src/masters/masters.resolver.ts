@@ -10,7 +10,9 @@ export class MastersResolver {
   constructor(private readonly mastersService: MastersService) {}
 
   @Mutation(() => Master)
-  createMaster(@Args('createMasterInput') createMasterInput: CreateMasterInput) {
+  createMaster(
+    @Args('createMasterInput') createMasterInput: CreateMasterInput,
+  ) {
     return this.mastersService.create(createMasterInput);
   }
 
@@ -23,7 +25,7 @@ export class MastersResolver {
     @Args('take', { type: () => Int, nullable: true, defaultValue: undefined })
     take?: number,
   ) {
-    return this.mastersService.findAll();
+    return this.mastersService.findAll(find, skip, take);
   }
 
   @Query(() => Master, { name: 'master' })
@@ -32,7 +34,9 @@ export class MastersResolver {
   }
 
   @Mutation(() => Master)
-  updateMaster(@Args('updateMasterInput') updateMasterInput: UpdateMasterInput) {
+  updateMaster(
+    @Args('updateMasterInput') updateMasterInput: UpdateMasterInput,
+  ) {
     return this.mastersService.update(updateMasterInput);
   }
 

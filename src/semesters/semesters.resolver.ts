@@ -9,7 +9,9 @@ export class SemestersResolver {
   constructor(private readonly semestersService: SemestersService) {}
 
   @Mutation(() => Semester)
-  createSemester(@Args('createSemesterInput') createSemesterInput: CreateSemesterInput) {
+  createSemester(
+    @Args('createSemesterInput') createSemesterInput: CreateSemesterInput,
+  ) {
     return this.semestersService.create(createSemesterInput);
   }
 
@@ -24,8 +26,13 @@ export class SemestersResolver {
   }
 
   @Mutation(() => Semester)
-  updateSemester(@Args('updateSemesterInput') updateSemesterInput: UpdateSemesterInput) {
-    return this.semestersService.update(updateSemesterInput.id, updateSemesterInput);
+  updateSemester(
+    @Args('updateSemesterInput') updateSemesterInput: UpdateSemesterInput,
+  ) {
+    return this.semestersService.update(
+      updateSemesterInput.id,
+      updateSemesterInput,
+    );
   }
 
   @Mutation(() => Semester)

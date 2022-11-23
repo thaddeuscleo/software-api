@@ -4,6 +4,6 @@ import { MastersResolver } from './masters.resolver';
 import { PrismaService } from './../prisma-service/prisma.service';
 
 @Module({
-  providers: [MastersResolver, MastersService, PrismaService]
+  providers: [MastersResolver, MastersService, PrismaService],
 })
 export class MastersModule {}

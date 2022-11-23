@@ -27,6 +27,11 @@ input CreateRoomInput {
   softwares: [String!] = []
 }
 
+input CreateSemesterInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 input CreateSoftwareInput {
   """Software current Installer"""
   currentLicense: String!
@@ -87,12 +92,15 @@ input MasterFind {
 type Mutation {
   createMaster(createMasterInput: CreateMasterInput!): Master!
   createRoom(createRoomInput: CreateRoomInput!): Room!
+  createSemester(createSemesterInput: CreateSemesterInput!): Semester!
   createSoftware(createSoftwareInput: CreateSoftwareInput!): Software!
   removeMaster(id: String!): Master!
   removeRoom(id: String!): Room!
+  removeSemester(id: Int!): Semester!
   removeSoftware(id: String!): Software!
   updateMaster(updateMasterInput: UpdateMasterInput!): Master!
   updateRoom(updateRoomInput: UpdateRoomInput!): Room!
+  updateSemester(updateSemesterInput: UpdateSemesterInput!): Semester!
   updateSoftware(updateSoftwareInput: UpdateSoftwareInput!): Software!
 }
 
@@ -102,6 +110,8 @@ type Query {
   room(id: String!): Room!
   roomCount: Int!
   rooms(skip: Int, take: Int): [Room!]!
+  semester(id: Int!): Semester!
+  semesters: [Semester!]!
   software(id: String!): Software!
   softwareCount: Int!
   softwares(find: SoftwareFind = {}, skip: Int, take: Int): [Software!]!
@@ -117,6 +127,11 @@ type Room {
   """Room softwares"""
   software: [Software!]!
   softwares: [Software!]!
+}
+
+type Semester {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }
 
 type Software {
@@ -184,6 +199,12 @@ input UpdateRoomInput {
 
   """Room softwares Id"""
   softwares: [String!]
+}
+
+input UpdateSemesterInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
 
 input UpdateSoftwareInput {
