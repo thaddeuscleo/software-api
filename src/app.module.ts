@@ -8,6 +8,7 @@ import { RoomsModule } from './rooms/rooms.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RabbitmqRoomsModule } from './rabbitmq-rooms/rabbitmq-rooms.module';
 import { MastersModule } from './masters/masters.module';
+import { SemestersModule } from './semesters/semesters.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { MastersModule } from './masters/masters.module';
     RoomsModule,
     RabbitmqRoomsModule,
     MastersModule,
+    SemestersModule,
   ],
 })
 export class AppModule {}
