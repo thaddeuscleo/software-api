@@ -1,5 +1,5 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Software } from 'src/softwares/entities/software.entity';
+import { Software } from '../../softwares/entities/software.entity';
 
 @ObjectType()
 export class Room {
@@ -10,5 +10,5 @@ export class Room {
   roomNumber: string;
 
   @Field(() => [Software], { description: 'Room softwares' })
-  software: Software;
+  softwares: Software[];
 }
