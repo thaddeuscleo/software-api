@@ -27,15 +27,22 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
     networks:
       - software-api-net
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
 
   minio:
     image: minio/minio
     volumes:
       - minio_storage:/data
     environment:
-      MINIO_ROOT_USER: masoud
-      MINIO_ROOT_PASSWORD: Strong#Pass#2022
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     command: server --console-address ":9001" /data
+    ports:
+      - 9000:9000
+      - 9001:9001
+    networks:
+      - software-api-net
 
 networks:
   software-api-net:
@@ -45,4 +52,6 @@ volumes:
   pgdata:
     external: true
   minio_storage:
+    external: true
+  rabbitmq:
     external: true
