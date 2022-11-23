@@ -2,6 +2,17 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateMasterInput {
+  """Master Name"""
+  masterName: String!
+
+  """Master Rooms"""
+  rooms: [String!] = []
+
+  """Master Softwares"""
+  softwares: [String!] = []
+}
+
 input CreateRoomInput {
   """Room Id"""
   id: String = ""
@@ -51,16 +62,43 @@ input CreateSoftwareInput {
   version: String!
 }
 
+type Master {
+  """Master ID"""
+  id: String!
+
+  """Master Name"""
+  masterName: String!
+
+  """Master Name"""
+  rooms: [Room!]!
+
+  """Master Name"""
+  softwares: Software!
+}
+
+input MasterFind {
+  """Master Id"""
+  id: String
+
+  """Master Name"""
+  masterName: String
+}
+
 type Mutation {
+  createMaster(createMasterInput: CreateMasterInput!): Master!
   createRoom(createRoomInput: CreateRoomInput!): Room!
   createSoftware(createSoftwareInput: CreateSoftwareInput!): Software!
+  removeMaster(id: String!): Master!
   removeRoom(id: String!): Room!
   removeSoftware(id: String!): Software!
+  updateMaster(updateMasterInput: UpdateMasterInput!): Master!
   updateRoom(updateRoomInput: UpdateRoomInput!): Room!
   updateSoftware(updateSoftwareInput: UpdateSoftwareInput!): Software!
 }
 
 type Query {
+  master(id: String!): Master!
+  masters(find: MasterFind = {}, skip: Int, take: Int): [Master!]!
   room(id: String!): Room!
   roomCount: Int!
   rooms(skip: Int, take: Int): [Room!]!
@@ -119,6 +157,19 @@ input SoftwareFind {
 
   """Software Name"""
   softwareName: String
+}
+
+input UpdateMasterInput {
+  id: String!
+
+  """Master Name"""
+  masterName: String
+
+  """Master Rooms"""
+  rooms: [String!] = []
+
+  """Master Softwares"""
+  softwares: [String!] = []
 }
 
 input UpdateRoomInput {
