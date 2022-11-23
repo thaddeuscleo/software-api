@@ -28,7 +28,7 @@ export class Software {
   installerPath: string;
 
   @Field(() => String, { description: 'Software notes' })
-  note: String;
+  note: string;
 
   @Field(() => [Room], { description: 'Software in room' })
   rooms: Room[];

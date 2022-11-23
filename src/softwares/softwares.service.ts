@@ -4,6 +4,7 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { GraphQLError } from 'graphql';
 import { PrismaService } from 'src/prisma-service/prisma.service';
 import { CreateSoftwareInput } from './dto/create-software.input';
+import { SoftwareFind } from './dto/software-find';
 import { UpdateSoftwareInput } from './dto/update-software.input';
 
 @Injectable()
@@ -28,10 +29,15 @@ export class SoftwaresService {
     });
   }
 
-  findAll(skip?: number, take?: number) {
+  findAll(find?: SoftwareFind, skip?: number, take?: number) {
     return this.prisma.software.findMany({
       skip,
       take,
+      where: {
+        softwareName: {
+          contains: find.softwareName,
+        },
+      },
     });
   }
 

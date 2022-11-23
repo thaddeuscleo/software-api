@@ -57,7 +57,7 @@ type Query {
   rooms(skip: Int, take: Int): [Room!]!
   software(id: String!): Software!
   softwareCount: Int!
-  softwares(skip: Int, take: Int): [Software!]!
+  softwares(find: SoftwareFind = {}, skip: Int, take: Int): [Software!]!
 }
 
 type Room {
@@ -102,6 +102,14 @@ type Software {
 
   """Software Version"""
   version: String!
+}
+
+input SoftwareFind {
+  """Software Identifier"""
+  id: String
+
+  """Software Name"""
+  softwareName: String
 }
 
 input UpdateRoomInput {

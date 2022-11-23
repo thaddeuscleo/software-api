@@ -13,6 +13,7 @@ import { CreateSoftwareInput } from './dto/create-software.input';
 import { UpdateSoftwareInput } from './dto/update-software.input';
 import { Room } from 'src/rooms/entities/room.entity';
 import { Logger } from '@nestjs/common';
+import { SoftwareFind } from './dto/software-find';
 
 @Resolver(() => Software)
 export class SoftwaresResolver {
@@ -28,12 +29,14 @@ export class SoftwaresResolver {
 
   @Query(() => [Software], { name: 'softwares' })
   findAll(
+    @Args('find', { nullable: true, defaultValue: new SoftwareFind() })
+    find?: SoftwareFind,
     @Args('skip', { type: () => Int, nullable: true, defaultValue: undefined })
     skip?: number,
     @Args('take', { type: () => Int, nullable: true, defaultValue: undefined })
     take?: number,
   ) {
-    return this.softwaresService.findAll(skip, take);
+    return this.softwaresService.findAll(find, skip, take);
   }
 
   @Query(() => Software, { name: 'software' })
