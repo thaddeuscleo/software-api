@@ -121,9 +121,9 @@ export class RoomsService {
       where: {
         rooms: {
           some: {
-            id
-          }
-        }
+            id,
+          },
+        },
       },
     });
   }
