@@ -58,7 +58,13 @@ const main = async () => {
       await prisma.software.create({
         data: {
           semesterId: semesterIdElement,
-          masterId: faker.helpers.arrayElement(masterTypesId),
+          masters: {
+            connect: [
+              ...faker.helpers
+                .arrayElements(masterTypesId)
+                .map<{ id: string }>((id) => ({ id })),
+            ],
+          },
           currentLicense: `${productName}.license.net`,
           installerPath: `\\\\smb.server\\softwares\\random\\${productName}`,
           license: String(isLicense),
