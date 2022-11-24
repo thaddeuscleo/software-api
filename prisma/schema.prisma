@@ -40,14 +40,14 @@ model Semester {
   id           String     @id @default(uuid())
   semesterName String
   isActive     Boolean
-  software     Software[]
+  softwares     Software[]
 }
 
 model Master {
   id         String     @id @default(uuid())
   masterName String
   rooms      Room[]
-  software   Software[]
+  softwares   Software[]
 }
 
 model SoftwaresOnRooms {

@@ -15,7 +15,7 @@ export class MastersService {
         rooms: {
           connect: [...rooms.map<{ id: string }>((room) => ({ id: room }))],
         },
-        software: {
+        softwares: {
           connect: [...softwares.map<{ id: string }>((room) => ({ id: room }))],
         },
       },
@@ -53,7 +53,7 @@ export class MastersService {
         rooms: {
           connect: [...rooms.map<{ id: string }>((room) => ({ id: room }))],
         },
-        software: {
+        softwares: {
           connect: [
             ...softwares.map<{ id: string }>((software) => ({ id: software })),
           ],
