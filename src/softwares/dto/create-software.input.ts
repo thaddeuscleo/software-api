@@ -8,8 +8,8 @@ export class CreateSoftwareInput {
   @Field(() => String, { description: 'Semester Id' })
   semesterId: string;
 
-  @Field(() => String, { description: 'Master Id' })
-  masterId: string;
+  @Field(() => [String], { description: 'Master(s) Id' })
+  masters: string[];
 
   @Field(() => String, { description: 'Software Group' })
   group: string;

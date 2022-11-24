@@ -1,9 +1,11 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
 import { MastersService } from './masters.service';
 import { Master } from './entities/master.entity';
 import { CreateMasterInput } from './dto/create-master.input';
 import { UpdateMasterInput } from './dto/update-master.input';
 import { MasterFind } from './dto/master-find';
+import { Software } from './../softwares/entities/software.entity';
+import { Room } from './../rooms/entities/room.entity';
 
 @Resolver(() => Master)
 export class MastersResolver {
@@ -43,5 +45,15 @@ export class MastersResolver {
   @Mutation(() => Master)
   removeMaster(@Args('id', { type: () => String }) id: string) {
     return this.mastersService.remove(id);
+  }
+
+  @ResolveField(() => [Software])
+  softwares(@Parent() master: Master) {
+    return this.mastersService.getSoftwares(master.id);
+  }
+
+  @ResolveField(() => [Room])
+  rooms(@Parent() master: Master) {
+    return this.mastersService.getRooms(master.id);
   }
 }

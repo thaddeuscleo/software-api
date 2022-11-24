@@ -115,4 +115,16 @@ export class RoomsService {
       },
     });
   }
+
+  getMaster(id: string) {
+    return this.prisma.master.findFirst({
+      where: {
+        rooms: {
+          some: {
+            id
+          }
+        }
+      },
+    });
+  }
 }

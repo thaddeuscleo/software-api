@@ -69,4 +69,24 @@ export class MastersService {
       },
     });
   }
+
+  getSoftwares(id: string) {
+    return this.prisma.software.findMany({
+      where: {
+        masters: {
+          some: {
+            id
+          }
+        }
+      }
+    });
+  }
+
+  getRooms(id: string) {
+    return this.prisma.room.findMany({
+      where: {
+        masterId: id
+      }
+    })
+  }
 }

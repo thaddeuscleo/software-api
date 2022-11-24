@@ -14,7 +14,6 @@ export class SoftwaresService {
   create(input: CreateSoftwareInput) {
     return this.prisma.software.create({
       data: {
-        masterId: input.masterId,
         semesterId: input.semesterId,
         currentLicense: input.currentLicense,
         installerPath: input.installerPath,
@@ -26,6 +25,9 @@ export class SoftwaresService {
         note: input.note,
         rooms: {
           create: [...input.rooms.map((room) => <{ roomId }>{ roomId: room })],
+        },
+        masters: {
+          connect: [...input.masters.map((id) => ({ id }))],
         },
       },
     });
@@ -68,6 +70,9 @@ export class SoftwaresService {
           version: input.version,
           group: input.group,
           note: input.note,
+          masters: {
+            connect: [...input.masters.map((id) => ({ id }))],
+          },
           rooms: {
             connectOrCreate: [
               ...input.rooms.map(
@@ -120,6 +125,18 @@ export class SoftwaresService {
         softwares: {
           some: {
             softwareId: software,
+          },
+        },
+      },
+    });
+  }
+
+  getMasters(id: string) {
+    return this.prisma.master.findMany({
+      where: {
+        softwares: {
+          some: {
+            id,
           },
         },
       },

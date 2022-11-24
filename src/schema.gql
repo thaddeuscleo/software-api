@@ -45,8 +45,8 @@ input CreateSoftwareInput {
   """Is Software Licensed"""
   license: String!
 
-  """Master Id"""
-  masterId: String!
+  """Master(s) Id"""
+  masters: [String!]!
 
   """Software notes"""
   note: String!
@@ -78,7 +78,7 @@ type Master {
   rooms: [Room!]!
 
   """Master Name"""
-  softwares: Software!
+  softwares: [Software!]!
 }
 
 input MasterFind {
@@ -121,6 +121,9 @@ type Room {
   """Room identifier In UUID"""
   id: String!
 
+  """room master Type"""
+  master: Master!
+
   """Room Number"""
   roomNumber: String!
 
@@ -148,6 +151,9 @@ type Software {
 
   """Is Software Licensed"""
   license: String!
+
+  """Master in room"""
+  masters: [Master!]!
 
   """Software notes"""
   note: String!
@@ -224,6 +230,9 @@ input UpdateSoftwareInput {
 
   """Master Id"""
   masterId: String
+
+  """Master(s) Id"""
+  masters: [String!]
 
   """Software notes"""
   note: String

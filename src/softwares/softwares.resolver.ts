@@ -14,6 +14,7 @@ import { UpdateSoftwareInput } from './dto/update-software.input';
 import { Room } from 'src/rooms/entities/room.entity';
 import { Logger } from '@nestjs/common';
 import { SoftwareFind } from './dto/software-find';
+import { Master } from './../masters/entities/master.entity';
 
 @Resolver(() => Software)
 export class SoftwaresResolver {
@@ -67,5 +68,10 @@ export class SoftwaresResolver {
   @ResolveField(() => [Room])
   rooms(@Parent() software: Software) {
     return this.softwaresService.getRooms(software.id);
+  }
+
+  @ResolveField(() => [Master])
+  masters(@Parent() software: Software) {
+    return this.softwaresService.getMasters(software.id);
   }
 }

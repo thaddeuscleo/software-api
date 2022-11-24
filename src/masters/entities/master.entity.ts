@@ -13,6 +13,6 @@ export class Master {
   @Field(() => [Room], { description: 'Master Name' })
   rooms: Room[];
 
-  @Field(() => Software, { description: 'Master Name' })
+  @Field(() => [Software], { description: 'Master Name' })
   softwares: Software[];
 }

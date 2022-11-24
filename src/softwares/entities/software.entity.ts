@@ -1,5 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Room } from 'src/rooms/entities/room.entity';
+import { Master } from './../../masters/entities/master.entity';
+import { Room } from './../../rooms/entities/room.entity';
 
 @ObjectType()
 export class Software {
@@ -32,4 +33,7 @@ export class Software {
 
   @Field(() => [Room], { description: 'Software in room' })
   rooms: Room[];
+
+  @Field(() => [Master], { description: 'Master in room' })
+  masters: Master[];
 }

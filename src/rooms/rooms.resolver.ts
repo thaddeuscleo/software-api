@@ -11,7 +11,8 @@ import { RoomsService } from './rooms.service';
 import { Room } from './entities/room.entity';
 import { CreateRoomInput } from './dto/create-room.input';
 import { UpdateRoomInput } from './dto/update-room.input';
-import { Software } from 'src/softwares/entities/software.entity';
+import { Software } from './../softwares/entities/software.entity';
+import { Master } from './../masters/entities/master.entity';
 
 @Resolver(() => Room)
 export class RoomsResolver {
@@ -55,5 +56,10 @@ export class RoomsResolver {
   @ResolveField(() => [Software])
   softwares(@Parent() room: Room) {
     return this.roomsService.getSoftwares(room.id);
+  }
+
+  @ResolveField(() => Master)
+  master(@Parent() room: Room) {
+    return this.roomsService.getMaster(room.id);
   }
 }
