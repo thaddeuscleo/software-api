@@ -75,18 +75,18 @@ export class MastersService {
       where: {
         masters: {
           some: {
-            id
-          }
-        }
-      }
+            id,
+          },
+        },
+      },
     });
   }
 
   getRooms(id: string) {
     return this.prisma.room.findMany({
       where: {
-        masterId: id
-      }
-    })
+        masterId: id,
+      },
+    });
   }
 }
