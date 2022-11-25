@@ -28,8 +28,14 @@ input CreateRoomInput {
 }
 
 input CreateSemesterInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Define semester is currently active"""
+  isActive: Boolean!
+
+  """Semester Name"""
+  semesterName: String!
+
+  """List of softwares id"""
+  softwares: [String!]
 }
 
 input CreateSoftwareInput {
@@ -96,7 +102,7 @@ type Mutation {
   createSoftware(createSoftwareInput: CreateSoftwareInput!): Software!
   removeMaster(id: String!): Master!
   removeRoom(id: String!): Room!
-  removeSemester(id: Int!): Semester!
+  removeSemester(id: String!): Semester!
   removeSoftware(id: String!): Software!
   updateMaster(updateMasterInput: UpdateMasterInput!): Master!
   updateRoom(updateRoomInput: UpdateRoomInput!): Room!
@@ -110,7 +116,7 @@ type Query {
   room(id: String!): Room!
   roomCount: Int!
   rooms(skip: Int, take: Int): [Room!]!
-  semester(id: Int!): Semester!
+  semester(id: String!): Semester!
   semesters: [Semester!]!
   software(id: String!): Software!
   softwareCount: Int!
@@ -132,8 +138,17 @@ type Room {
 }
 
 type Semester {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Semester ID"""
+  id: String!
+
+  """Is current semester"""
+  isActive: Boolean!
+
+  """Semester Name"""
+  semesterName: String!
+
+  """Semester softwares"""
+  softwares: [Software!]!
 }
 
 type Software {
@@ -152,7 +167,7 @@ type Software {
   """Is Software Licensed"""
   license: String!
 
-  """Master in room"""
+  """Software is available in room"""
   masters: [Master!]!
 
   """Software notes"""
@@ -163,6 +178,9 @@ type Software {
 
   """Software in room"""
   rooms: [Room!]!
+
+  """Software is record in semester"""
+  semester: Semester!
 
   """Software Name"""
   softwareName: String!
@@ -207,9 +225,17 @@ input UpdateRoomInput {
 }
 
 input UpdateSemesterInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  """Semester ID"""
+  id: String!
+
+  """Define semester is currently active"""
+  isActive: Boolean
+
+  """Semester Name"""
+  semesterName: String
+
+  """List of softwares id"""
+  softwares: [String!]
 }
 
 input UpdateSoftwareInput {

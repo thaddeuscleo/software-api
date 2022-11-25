@@ -142,4 +142,16 @@ export class SoftwaresService {
       },
     });
   }
+
+  getSemester(id: string) {
+    return this.prisma.semester.findFirst({
+      where: {
+        softwares: {
+          some: {
+            id
+          }
+        }
+      }
+    })
+  }
 }

@@ -1,8 +1,9 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
 import { SemestersService } from './semesters.service';
 import { Semester } from './entities/semester.entity';
 import { CreateSemesterInput } from './dto/create-semester.input';
 import { UpdateSemesterInput } from './dto/update-semester.input';
+import { Software } from './../softwares/entities/software.entity';
 
 @Resolver(() => Semester)
 export class SemestersResolver {
@@ -21,7 +22,7 @@ export class SemestersResolver {
   }
 
   @Query(() => Semester, { name: 'semester' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.semestersService.findOne(id);
   }
 
@@ -29,14 +30,16 @@ export class SemestersResolver {
   updateSemester(
     @Args('updateSemesterInput') updateSemesterInput: UpdateSemesterInput,
   ) {
-    return this.semestersService.update(
-      updateSemesterInput.id,
-      updateSemesterInput,
-    );
+    return this.semestersService.update(updateSemesterInput);
   }
 
   @Mutation(() => Semester)
-  removeSemester(@Args('id', { type: () => Int }) id: number) {
+  removeSemester(@Args('id', { type: () => String }) id: string) {
     return this.semestersService.remove(id);
+  }
+
+  @ResolveField(() => [Software])
+  softwares(@Parent() semester: Semester) {
+    return this.semestersService.getSoftwares(semester.id)
   }
 }

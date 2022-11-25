@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Semester } from 'src/semesters/entities/semester.entity';
 import { Master } from './../../masters/entities/master.entity';
 import { Room } from './../../rooms/entities/room.entity';
 
@@ -34,6 +35,9 @@ export class Software {
   @Field(() => [Room], { description: 'Software in room' })
   rooms: Room[];
 
-  @Field(() => [Master], { description: 'Master in room' })
+  @Field(() => [Master], { description: 'Software is available in room' })
   masters: Master[];
+
+  @Field(() => Semester, { description: 'Software is record in semester' })
+  semester: Semester;
 }

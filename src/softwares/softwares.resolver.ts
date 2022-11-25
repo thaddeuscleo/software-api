@@ -15,6 +15,7 @@ import { Room } from 'src/rooms/entities/room.entity';
 import { Logger } from '@nestjs/common';
 import { SoftwareFind } from './dto/software-find';
 import { Master } from './../masters/entities/master.entity';
+import { Semester } from './../semesters/entities/semester.entity';
 
 @Resolver(() => Software)
 export class SoftwaresResolver {
@@ -73,5 +74,10 @@ export class SoftwaresResolver {
   @ResolveField(() => [Master])
   masters(@Parent() software: Software) {
     return this.softwaresService.getMasters(software.id);
+  }
+
+  @ResolveField(() => Semester)
+  semester(@Parent() software: Software) {
+    return this.softwaresService.getSemester(software.id);
   }
 }
