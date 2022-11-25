@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { SemestersService } from './semesters.service';
 import { Semester } from './entities/semester.entity';
 import { CreateSemesterInput } from './dto/create-semester.input';
@@ -40,6 +47,6 @@ export class SemestersResolver {
 
   @ResolveField(() => [Software])
   softwares(@Parent() semester: Semester) {
-    return this.semestersService.getSoftwares(semester.id)
+    return this.semestersService.getSoftwares(semester.id);
   }
 }

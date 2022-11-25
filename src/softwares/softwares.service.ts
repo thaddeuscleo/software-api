@@ -148,10 +148,10 @@ export class SoftwaresService {
       where: {
         softwares: {
           some: {
-            id
-          }
-        }
-      }
-    })
+            id,
+          },
+        },
+      },
+    });
   }
 }

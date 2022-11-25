@@ -57,8 +57,8 @@ export class SemestersService {
   getSoftwares(id: string) {
     return this.prisma.software.findMany({
       where: {
-        semesterId: id
-      }
-    })
+        semesterId: id,
+      },
+    });
   }
 }
