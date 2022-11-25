@@ -15,4 +15,7 @@ RUN npm i -g @nestjs/cli
 # Creates a "dist" folder with the production build
 RUN npm run build
 
+# Uninstall Dependencies
+RUN npm uninstall -g @nestjs/cli
+
 CMD ["node", "dist/src/main"]

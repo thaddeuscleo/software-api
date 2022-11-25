@@ -3,10 +3,11 @@ version: '3'
 services:
   software_backend_api:
     container_name: software_backend_api
-    image: software_backend_api:1.0.0
+    image: software_backend_api:1.0.1
     build:
       context: .
       dockerfile: ./Dockerfile
+    restart: unless-stopped
     ports:
       - ${SERVICE_PORT}:${SERVICE_PORT}
     networks:
@@ -18,13 +19,13 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
-    restart: unless-stopped
 
   postgres:
     container_name: postgres
     image: postgres:12
     networks:
       - software-api-net
+    restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USERNAME}
@@ -32,29 +33,30 @@ services:
       PG_DATA: /var/lib/postgresql/data
     volumes:
       - pgdata:/var/lib/postgresql/data
-    restart: unless-stopped
 
   rabbitmq:
     container_name: rabbitmq_broker
     image: rabbitmq:management-alpine
+    restart: unless-stopped
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
     networks:
       - software-api-net
-    restart: unless-stopped
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
 
   minio:
     image: minio/minio
     volumes:
       - minio_storage:/data
+    restart: unless-stopped
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     command: server --console-address ":9001" /data
     networks:
       - software-api-net
-    restart: unless-stopped
 
 networks:
   software-api-net:
@@ -64,4 +66,6 @@ volumes:
   pgdata:
     external: true
   minio_storage:
+    external: true
+  rabbitmq:
     external: true
