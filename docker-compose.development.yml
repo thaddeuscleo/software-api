@@ -44,6 +44,32 @@ services:
     networks:
       - software-api-net
 
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - prometheus:/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - '9090:9090'
+    networks:
+      - software-api-net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: monitoring_grafana
+    links:
+      - prometheus:prometheus
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=password
+    ports:
+      - '4000:3000'
+    networks:
+      - software-api-net
+
 networks:
   software-api-net:
     driver: bridge
@@ -54,4 +80,8 @@ volumes:
   minio_storage:
     external: true
   rabbitmq:
+    external: true
+  grafana_data:
+    external: true
+  prometheus:
     external: true

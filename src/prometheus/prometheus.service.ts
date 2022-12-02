@@ -8,7 +8,7 @@ export type PrometheusHistogram = Histogram<string>;
 @Injectable()
 export class PrometheusService {
   private readonly SERVICE_NAME = 'SoftwareAPI';
-  private readonly SERVICE_PREFIX = 'BackendMetrics_';
+  private readonly SERVICE_PREFIX = '';
   private registeredMetrics: MapHistogram = {};
   private registeredGauges: MapGauge = {};
   private readonly registry: Registry;
