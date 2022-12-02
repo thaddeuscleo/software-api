@@ -9,7 +9,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RabbitmqRoomsModule } from './rabbitmq-rooms/rabbitmq-rooms.module';
 import { MastersModule } from './masters/masters.module';
 import { SemestersModule } from './semesters/semesters.module';
-import { UploadsModule } from './uploads/uploads.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -23,8 +23,8 @@ import { UploadsModule } from './uploads/uploads.module';
         const plugin = isApolloSandBox
           ? ApolloServerPluginLandingPageLocalDefault()
           : {};
-
         return {
+          uploads: false,
           autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
           sortSchema: true,
           plugins: [plugin],
@@ -39,7 +39,7 @@ import { UploadsModule } from './uploads/uploads.module';
     RabbitmqRoomsModule,
     MastersModule,
     SemestersModule,
-    UploadsModule,
+    FilesModule,
   ],
 })
 export class AppModule {}
