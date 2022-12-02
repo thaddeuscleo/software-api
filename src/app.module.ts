@@ -10,7 +10,9 @@ import { RabbitmqRoomsModule } from './rabbitmq-rooms/rabbitmq-rooms.module';
 import { MastersModule } from './masters/masters.module';
 import { SemestersModule } from './semesters/semesters.module';
 import { FilesModule } from './files/files.module';
-import { MinioModule } from 'nestjs-minio-client';
+import { HealthModule } from './health/health.module';
+import { PrometheusModule } from './prometheus/prometheus.module';
+import { MetricsModule } from './metrics/metrics.module';
 
 @Module({
   imports: [
@@ -41,6 +43,9 @@ import { MinioModule } from 'nestjs-minio-client';
     MastersModule,
     SemestersModule,
     FilesModule,
+    HealthModule,
+    PrometheusModule,
+    MetricsModule,
   ],
 })
 export class AppModule {}
