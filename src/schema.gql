@@ -80,6 +80,15 @@ input CreateSoftwareInput {
   version: String!
 }
 
+type File {
+  etag: String!
+  lastModified: String!
+
+  """File Name"""
+  name: String!
+  size: Int!
+}
+
 type Master {
   """Master ID"""
   id: String!
@@ -119,6 +128,7 @@ type Mutation {
 }
 
 type Query {
+  files: [File!]!
   master(id: String!): Master!
   masters(find: MasterFind = {}, skip: Int, take: Int): [Master!]!
   room(id: String!): Room!

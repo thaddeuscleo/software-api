@@ -1,11 +1,14 @@
-import { Resolver,  Mutation, Args} from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args} from '@nestjs/graphql';
 import { FilesService } from './files.service';
 import { File } from './entities/file.entity';
 import { CreateFileInput } from './dto/create-file.input';
-import { Query } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 
 @Resolver(() => File)
 export class FilesResolver {
+
+  private readonly logger = new Logger(FilesResolver.name)
+
   constructor(private readonly filesService: FilesService) {}
 
   @Mutation(() => Boolean)
@@ -13,10 +16,9 @@ export class FilesResolver {
     return this.filesService.uploadToBucket(input); 
   }
 
-  // @Query(()=> )
-  // async buckets() {
-
-  // }
-
+  @Query(()=> [File])
+  async files() {
+    return this.filesService.listObjects()
+  }
 
 }

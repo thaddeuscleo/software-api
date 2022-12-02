@@ -1,4 +1,4 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class File {
@@ -6,5 +6,11 @@ export class File {
   name: string;
 
   @Field(() => String)
-  file: string;
+  lastModified: string;
+
+  @Field(() => String)
+  etag: string;
+  
+  @Field(() => Int)
+  size: number;
 }
