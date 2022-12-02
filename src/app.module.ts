@@ -10,12 +10,14 @@ import { RabbitmqRoomsModule } from './rabbitmq-rooms/rabbitmq-rooms.module';
 import { MastersModule } from './masters/masters.module';
 import { SemestersModule } from './semesters/semesters.module';
 import { FilesModule } from './files/files.module';
+import { MinioModule } from "nestjs-minio-client"
 
 @Module({
   imports: [
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       imports: [ConfigModule],
+      inject: [ConfigService],
       useFactory: (config: ConfigService) => {
         const isApolloSandBox = config.get<string>('APOLLO_SANDBOX') === 'true';
         const isPlayground =
@@ -31,7 +33,6 @@ import { FilesModule } from './files/files.module';
           playground: isPlayground,
         };
       },
-      inject: [ConfigService],
     }),
     ConfigModule.forRoot(),
     SoftwaresModule,

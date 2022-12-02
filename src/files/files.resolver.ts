@@ -2,6 +2,7 @@ import { Resolver,  Mutation, Args} from '@nestjs/graphql';
 import { FilesService } from './files.service';
 import { File } from './entities/file.entity';
 import { CreateFileInput } from './dto/create-file.input';
+import { Query } from '@nestjs/common';
 
 @Resolver(() => File)
 export class FilesResolver {
@@ -11,5 +12,11 @@ export class FilesResolver {
   async uploadFile(@Args('createFileInput') input: CreateFileInput) {
     return this.filesService.uploadToBucket(input); 
   }
+
+  // @Query(()=> )
+  // async buckets() {
+
+  // }
+
 
 }
