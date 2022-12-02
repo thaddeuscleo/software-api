@@ -39,7 +39,11 @@ export class FilesService {
   }
 
   async listObjects() {
-    let res = this.minioService.client.listObjects('software-management', '', true);
+    let res = this.minioService.client.listObjects(
+      'software-management',
+      '',
+      true,
+    );
     let objectsPromise = new Promise((resolve, reject) => {
       let arr: any[] = [];
 

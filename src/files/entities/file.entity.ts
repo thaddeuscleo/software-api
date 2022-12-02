@@ -10,7 +10,7 @@ export class File {
 
   @Field(() => String)
   etag: string;
-  
+
   @Field(() => Int)
   size: number;
 }

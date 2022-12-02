@@ -16,10 +16,10 @@ import { MinioModule } from 'nestjs-minio-client';
           useSSL: false,
           accessKey: config.get('MINIO_ACCESS_KEY'),
           secretKey: config.get('MINIO_SECRET_KEY'),
-        }
-      }
+        };
+      },
     }),
   ],
-  providers: [FilesResolver, FilesService]
+  providers: [FilesResolver, FilesService],
 })
 export class FilesModule {}
