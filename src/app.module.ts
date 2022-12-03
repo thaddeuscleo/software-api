@@ -33,6 +33,9 @@ import { MetricsModule } from './metrics/metrics.module';
           sortSchema: true,
           plugins: [plugin],
           playground: isPlayground,
+          subscriptions: {
+            'graphql-ws': true
+          },
         };
       },
     }),
